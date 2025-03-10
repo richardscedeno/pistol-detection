@@ -1,4 +1,5 @@
 /data
 /runs
+/predict
 __pycache__/
 .env
