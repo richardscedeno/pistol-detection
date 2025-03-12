@@ -1,5 +1,11 @@
 import os
 import glob
+import sys
+
+sys.path.append('./telegram_bot')
+from telegram_bot.bot import TelegramBot
+
+bot = TelegramBot(properties_path='./telegram_bot/.telegram_keys')
 
 # funcion para verificar el path donde se almacenan las detecciones en local, para poder enviar a telegram.
 def verify_path():
@@ -16,6 +22,7 @@ def verify_path():
 
         # verificar que la ruta de las detecciones existe
         if os.path.exists(detection_path):
+
             # obtener la lista de detecciones 
             detection_list = glob.glob(detection_path + '*.jpg')
             # Ordenamos para seleccionar la ultima
@@ -23,8 +30,10 @@ def verify_path():
             
             # almacenamos la ultima deteccion
             last_detection = detection_list[-1]
+            # descripcion para el envio a telegram
+            description = 'Gun Detected' 
 
-            print(f'Ultima deteccion: "{detection_list[-1]}"')
-
-
+            # envio a telegram, con el bot creado.
+            bot.send_photo_to_channel(last_detection, description)
+          
 verify_path()
