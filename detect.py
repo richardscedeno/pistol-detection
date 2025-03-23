@@ -2,6 +2,7 @@
 import cv2
 import imutils
 from ultralytics import YOLO
+import functions
 
 model = YOLO('../weights/best50.pt')
 
@@ -29,6 +30,7 @@ while cap.isOpened():
 
         if conf.nelement() != 0:
             print(f'Tiene datos: {conf.nelement()}')
+            functions.verify_path()
         else:
             print(f'Está vacio: {conf.nelement()}')
 
