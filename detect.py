@@ -5,6 +5,8 @@ from ultralytics import YOLO
 
 model = YOLO('../weights/best50.pt')
 
+#video_path = "./data/vid5.mp4"
+#cap = cv2.VideoCapture(video_path)
 
 cap = cv2.VideoCapture(0)
 
